@@ -1,0 +1,46 @@
+<project name="com.jjw.core build file" basedir="." default="all">
+   <description>
+      This is the build file for the com.jjw.core sub-component.
+   </description>
+   <property environment="env" />
+
+   <!-- Specify the cpc name -->
+   <property name="component" value="com.jjw.core" />
+   <echo message="${component}" />
+
+   <!-- Grab user's personal properties -->
+   <property file="build.${env.USER}.properties" />
+
+   <!-- Setup common properties -->
+   <property name="jjw.dir" value="${env.JJW_DIR}" />
+   <property name="common.dir" value="${jjw.dir}/common" />
+   <property file="${common.dir}/common-build.properties" />
+   <property file="build.properties" />
+
+   <!-- Setup compile classpath -->
+   <path id="compile.classpath">
+      <fileset dir="${cots.dir}" includes="**/*.jar" />
+   </path>
+
+   <!-- Define all of the files we want to end up in deploy/${component}/config -->
+   <path id="configtodeploy">
+   </path>
+   <property name="config.to.deploy" refid="configtodeploy" />
+
+   <!-- Define all of the files we want to end up in deploy/${component}/bin -->
+   <path id="bintodeploy">
+   </path>
+   <property name="bin.to.deploy" refid="bintodeploy" />
+
+   <!-- Load in the common build file -->
+   <import file="${common.dir}/common-build.xml" as="common-build" />
+
+   <!-- Override deploy -->
+   <target name="deploy" />
+
+   <!-- Target: Token-Replace -->
+   <target name="finalize" description="Token replace for my component." depends="common-build.finalize">
+
+   </target>
+
+</project>

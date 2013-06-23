@@ -1,2 +1,2 @@
 /.eclipsescratch
-dist/core.jar
+dist/*.jar
